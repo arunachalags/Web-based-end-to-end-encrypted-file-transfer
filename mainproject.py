@@ -272,15 +272,16 @@ def encryptScreen():
     print("Option 1: Encrypt A File")
     longLine()
     fileToEncrypt = input("File To Encrypt: ")
+    fileName = fileToEncrypt + ".dnc"
     if len(dencryptionKey) > 0:
-        file_name = encrypt_file(fileToEncrypt, dencryptionKey)
+        pyAesCrypt.encryptFile(fileToEncrypt, fileName, dencryptionKey, bufferSize)
+        print(fileName + " Was Successfully Encrypted")
     else:
         password = getpass.getpass(prompt='Password: ')
-        file_name = encrypt_file(fileToEncrypt, password)
-    print(file_name + " Was Successfully Encrypted")
+        pyAesCrypt.encryptFile(fileToEncrypt, fileName, password, bufferSize)
+        print(fileName + " Was Successfully Encrypted")
     null = input("Press ENTER To Return To The Main Menu")
     mainFunction()
-
 
 def decryptScreen():
     title()
